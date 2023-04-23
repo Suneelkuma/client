@@ -1,41 +1,36 @@
 import React, { useEffect } from 'react'
-
 import { useNavigate } from 'react-router-dom'; 
+
 const Logout = () => {
+  const navigate = useNavigate();
 
-    const navigate=useNavigate();
-const callLogoutPage=async()=>{
-    const res = await fetch('/logout', {
+  const callLogoutPage = async () => {
+    try {
+      const response = await fetch('/logout', {
         method: "GET",
-        headers:{
-          Accept:"application/json",//for accepting token
-        
+        headers: {
+          Accept: "application/json",
         },
-        credentials:"include"//for token
-      })
+        credentials: "include"
+      });
 
- 
+      if (!response.status!==200) {
+        throw new Error(response.statusText);
+      }
 
-      .then((res)=>{
-        navigate('/signin',{replace:true})
-        if(res.status!==200){
-            const error=new Error(res.error);
-            throw error;
-        }
-      }).catch((err)=>{
-        console.log(err);
-      })
-     
-      
-}
+      navigate('/register', { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
+    callLogoutPage();
+  }, []);
 
-    useEffect(() => {
-        callLogoutPage();//cannot use async function inside useeffect
-        },);
   return (
     <div>
-     <h1>user is logout</h1>
+      <h1>User is logged out</h1>
     </div>
   )
 }

@@ -58,7 +58,7 @@ function SearchAds() {
     fetchData();
   };
 
-  const imageURLS='https://images.unsplash.com/photo-1464692805480-a69dfaafdb0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
+  const imageURLS="https://images.unsplash.com/photo-1464692805480-a69dfaafdb0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
   return (
     <div className='container mt-5' >
       <form onSubmit={handleSearch}>
@@ -67,12 +67,17 @@ function SearchAds() {
       </form>
       <ul>
         {ads.map((ad, index) => (
-          <li key={index}>
-            <h2>{ad.headline}</h2>
-            <p>{ad.description}</p>
-            <p>{ad.CTA}</p>
-           
-            <img src="" alt="Ad" />
+          <li key={index} style={{listStyleType:"none"}}>
+            <div class="card mt-3" style={{width: "18rem"}}>
+  <img src={ad.imageUrl} class="card-img-top" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">{ad.headline}</h5>
+    <p>{ad.company}</p>
+    <p class="card-text">{ad.description}</p>
+    <a href="#" class="btn btn-primary">{ad.CTA}</a>
+  </div>
+</div>
+            
           </li>
         ))}
       </ul>

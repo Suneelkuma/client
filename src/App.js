@@ -20,7 +20,7 @@ function App() {
 <Route  path="register" element={<Register/>}/>
       <Route exact path="searchads" element={<SearchAds/>} />
           <Route exact path="signin" element={<Signin />} />
-  
+<Route exact path="logout" element={<Logout/>} />
         
         </Routes>
       </BrowserRouter>
